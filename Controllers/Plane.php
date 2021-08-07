@@ -5,7 +5,7 @@ namespace Controllers;
 use Models\Plane as ModelsPlane;
 use Views\Plane as PlaneView;
 
-class Plane
+class Plane extends BaseController
 {
     public static function GET_planeInfo()
     {
@@ -20,7 +20,6 @@ class Plane
     public static function POST_fly()
     {
         sleep(5);
-        header('Content-Type: application/json');
-        echo json_encode(['response' => true]);
+        self::sendResponseJSON(['response' => true]);
     }
 }

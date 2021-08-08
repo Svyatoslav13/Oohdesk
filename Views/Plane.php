@@ -2,6 +2,8 @@
 
 namespace Views;
 
+use Models\Plane as ModelsPlane;
+
 class Plane extends View
 {
     public $template;
@@ -9,27 +11,6 @@ class Plane extends View
 
     public function get_planes()
     {
-        return [
-            [
-                'id' => 1,
-                'name' => 'boieng 10',
-                'status' => 'В ангаре'
-            ],
-            [
-                'id' => 2,
-                'name' => 'boieng 101',
-                'status' => 'В ангаре'
-            ],
-            [
-                'id' => 32,
-                'name' => 'boieng 1',
-                'status' => 'В ангаре'
-            ],
-            [
-                'id' => 42,
-                'name' => 'boieng 1005',
-                'status' => 'В ангаре'
-            ]
-        ];
+        return ModelsPlane::getPlanes();
     }
 }

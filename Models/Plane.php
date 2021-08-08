@@ -8,14 +8,16 @@ class Plane
 {
     public static function getPlanes()
     {
-        $conn = new Connection();
+        $db = new Connection();
 
-        return $conn->db->query("
-            SELECT *
+        return $db->q("
+            SELECT planes.id
+                 , planes.name
+                 , states.state AS status
               FROM planes_states AS ps
              INNER JOIN planes
                 ON planes.id = ps.plane_id
              INNER JOIN states
-                ON states.id = ps.state_id")->fetch_all();
+                ON states.id = ps.state_id");
     }
 }

@@ -6,21 +6,38 @@ const planes = {
         $schedule.find('.data')
             .on('click', (event) => {
                 let $target = $(event.currentTarget);
-
-                $target.find('.status')
-                    .text('В процессе взлета...');
-
-                $.ajax({
+                let timeout;
+                let timer = $.ajax({
                     method: 'POST',
-                    async: false,
                     url: '/scripts/action.php/Plane/fly',
-                    data: { id: $target.data('id') }
-                }).done((json) => {
-                    if (json.response) {
-                        $target.find('.status')
-                            .text('Взлетел')
-                    }
-                })
+                    data: { id: $target.data('id') },
+                    // success: (data) => {
+                    //     console.log(data);
+                    //     if (data.state) {
+                    //         $target.find('.status')
+                    //         .text(data.state)
+                    //         // clearTimeout(timer);
+                    //     } else if (data.error) {
+                    //         $target.find('.status')
+                    //         .text('Error')
+                    //     }
+                    // }
+                }).then((data) => {
+                        console.log(data);
+                        if (data.state) {
+                            $target.find('.status')
+                            .text(data.state)
+                            // clearTimeout(timer);
+                        } else if (data.error) {
+                            $target.find('.status')
+                            .text('Error')
+                        }
+                }).fail(() => {
+                    console.log('fail')
+                });
+                timeout = setTimeout(timer, 2000);
+                $target.find('.status')
+                       .text('В процессе взлета...');
             })
     },
     test: () => {
@@ -106,7 +123,8 @@ const planes = {
 
                 let $target = $(event.currentTarget);
 
-                $target.css('color', 'red').find('.status')
+                $target.css('color', 'red')
+                       .find('.status')
                        .text('В очереди...');
                 
                 queue.add($target);

@@ -14,8 +14,9 @@
                 <th>Статус</th>
                 <th></th>
             </tr>
+            <?php var_dump($this->get_planes()) ?>
             <?php foreach ($this->get_planes() as $plane): ?>
-            <tr class="data" data-id=<?php $plane['id'] ?>>
+            <tr class="data" data-id="<?= $plane['id'] ?>">
                 <td class="name"><?= $plane['name'] ?></td>
                 <td class="status"><?= $plane['status'] ?></td>
                 <td class="button"><button type="submit">На взлет</button></td>

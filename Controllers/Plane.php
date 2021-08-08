@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MySQL\Connection;
 use Views\Plane as PlaneView;
+use Models\Plane as ModelsPlane;
 
 class Plane extends BaseController
 {
@@ -17,6 +18,7 @@ class Plane extends BaseController
 
     public static function POST_fly()
     {
+
         $db = new Connection();
         $id = intval($_POST['id']);
 
@@ -59,5 +61,13 @@ class Plane extends BaseController
             self::sendResponseJSON(['state' => 'Уже взлетел']);
         }
 
+    }
+
+    public static function GET_history()
+    {
+        $id = $_GET['id'];
+
+        $history = ModelsPlane::getHistory($id);
+        self::sendResponseJSON($history);
     }
 }

@@ -13,4 +13,9 @@ class Plane extends View
     {
         return ModelsPlane::getPlanes();
     }
+
+    public function get_history($id)
+    {
+        return ModelsPlane::getHistory($id);
+    }
 }

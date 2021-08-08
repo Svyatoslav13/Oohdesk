@@ -20,4 +20,17 @@ class Plane
              INNER JOIN states
                 ON states.id = ps.state_id");
     }
+
+    public static function getHistory(int $id): array
+    {
+        $db = new Connection();
+
+        return $db->q('SELECT from_unixtime(history.time) AS time
+                            , states.state
+                         FROM history
+                        INNER JOIN states
+                           ON states.id = history.state_id
+                        WHERE plane_id = ' . $id
+        );
+    }
 }

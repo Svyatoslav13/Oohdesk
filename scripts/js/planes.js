@@ -28,6 +28,7 @@ const planes = {
             });
 
             $('.history').on('click', (event) => {
+                // TODO event on every history button
                 const container = $('.chart');
                 if (container.data('id') == $(event.currentTarget).find('button').data('id')) {
                     let id = $(event.currentTarget).find('button').data('id');

@@ -8,14 +8,6 @@ use Models\Plane as ModelsPlane;
 
 class Plane extends BaseController
 {
-    public static function GET_planeInfo()
-    {
-        $t = new PlaneView([
-            'template' => 'planes'
-        ]);
-        echo $t->render();
-    }
-
     public static function POST_fly()
     {
 
